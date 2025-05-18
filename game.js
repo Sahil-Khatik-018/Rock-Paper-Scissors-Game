@@ -1,11 +1,18 @@
 let userScore = 0;
 let compScore = 0;
 
+// Load high score from localStorage or default to 0
+let highScore = localStorage.getItem("highScore") || 0;
+
 const choices = document.querySelectorAll(".choice");
 const msgPara = document.querySelector("#msg");
 
 const userScorePara = document.querySelector("#user-score");
 const compScorePara = document.querySelector("#comp-score");
+const highScorePara = document.querySelector("#high-score");
+
+// Set the initial high score on the UI
+highScorePara.innerText = highScore;
 
 const genCompChoice = () => {
   const options = ["rock", "paper", "scissors"];
@@ -14,52 +21,66 @@ const genCompChoice = () => {
 };
 
 const drawGame = () => {
-  // draw game
-  //   console.log("Game was draw!");
-  msgPara.innerText = "Game was draw . Play Again!";
-  msgPara.style.backgroundColor = "#081b31";
+  msgPara.innerText = "Draw! Try again.";
+  msgPara.style.backgroundColor = "#0a1e3b";
+};
+
+const updateHighScore = () => {
+  if (userScore > highScore) {
+    highScore = userScore;
+    localStorage.setItem("highScore", highScore);
+    highScorePara.innerText = highScore;
+  }
 };
 
 const showWinner = (userWin, userChoice, compChoice) => {
   if (userWin) {
     userScore++;
     userScorePara.innerText = userScore;
-    msgPara.innerText = `You win! Your ${userChoice} beats ${compChoice}`;
+    msgPara.innerText = `You win! ${userChoice} beats ${compChoice}`;
     msgPara.style.backgroundColor = "green";
   } else {
     compScore++;
     compScorePara.innerText = compScore;
-    msgPara.innerText = `You lose! ${compChoice} beats your ${userChoice}`;
+    msgPara.innerText = `You lose! ${compChoice} beats ${userChoice}`;
     msgPara.style.backgroundColor = "red";
   }
+
+  updateHighScore();
 };
 
 const playGame = (userChoice) => {
-  //   console.log("user choice is =", userChoice);
-  // Generate computer choice
   const compChoice = genCompChoice();
-  //   console.log("computer choice is =", compChoice);
 
   if (userChoice === compChoice) {
     drawGame();
   } else {
-    if (userChoice === "rock") {
-      // scissors,paper
-      userWin = compChoice === "paper" ? false : true;
-    } else if (userChoice === "paper") {
-      // rock,scissors
-      userWin = compChoice === "scissors" ? false : true;
-    } else {
-      // rock,paper
-      userWin = compChoice === "rock" ? false : true;
-    }
+    const userWin =
+      (userChoice === "rock" && compChoice === "scissors") ||
+      (userChoice === "paper" && compChoice === "rock") ||
+      (userChoice === "scissors" && compChoice === "paper");
+
     showWinner(userWin, userChoice, compChoice);
   }
 };
 
+// Add event listeners to choices
 choices.forEach((choice) => {
   choice.addEventListener("click", () => {
     const userChoice = choice.getAttribute("id");
     playGame(userChoice);
   });
 });
+
+// Add reset functionality
+const resetBtn = document.getElementById("reset-btn");
+if (resetBtn) {
+  resetBtn.addEventListener("click", () => {
+    userScore = 0;
+    compScore = 0;
+    userScorePara.innerText = userScore;
+    compScorePara.innerText = compScore;
+    msgPara.innerText = "Play your move!";
+    msgPara.style.backgroundColor = "#0a1e3b";
+  });
+}
