@@ -44,7 +44,6 @@ h1 {
   gap: 2rem;
 }
 
-/* Choices */
 .choices {
   display: flex;
   justify-content: center;
@@ -80,7 +79,6 @@ h1 {
   font-size: 1.1rem;
 }
 
-/* Scoreboard */
 .score-board {
   display: flex;
   justify-content: center;
@@ -93,8 +91,6 @@ h1 {
   font-weight: bold;
   color: #0a1e3b;
 }
-
-/* Message */
 .msg-container {
   margin-top: 2rem;
   text-align: center;
@@ -110,7 +106,6 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .choices {
     gap: 1.5rem;
@@ -183,25 +178,21 @@ body {
   justify-content: center;
   align-items: center;
   font-family: 'Outfit', sans-serif;
-
-  /* Background image setup */
   background-image: url('images/hero.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: #f0f0f0; /* light text color for contrast */
+  color: #f0f0f0; 
 }
 
-/* Add a dark transparent overlay to improve readability */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(10, 30, 59, 0.6); /* dark blue overlay with opacity */
+  background: rgba(10, 30, 59, 0.6); 
   z-index: 0;
 }
 
-/* Make sure main content is above the overlay */
 main {
   position: relative;
   z-index: 1;
@@ -209,9 +200,8 @@ main {
   max-width: 900px;
 }
 
-/* Headings and text colors */
 h1 {
-  background-color: rgba(10, 30, 59, 0.9); /* dark background with some opacity */
+  background-color: rgba(10, 30, 59, 0.9); 
   color: #f0f0f0;
   padding: 1rem;
   border-radius: 10px;
@@ -220,14 +210,12 @@ h1 {
   font-size: 2.5rem;
 }
 
-/* High score text */
 .high-score {
   color: #f0f0f0;
   font-weight: 700;
   font-size: 1.25rem;
 }
 
-/* Reset button */
 #reset-btn {
   background-color: #f39c12;
   color: white;
@@ -245,10 +233,9 @@ h1 {
   background-color: #e67e22;
 }
 
-/* Choices container */
 .choice {
-  background: rgba(255, 255, 255, 0.9); /* white with slight transparency */
-  color: #0a1e3b; /* dark text */
+  background: rgba(255, 255, 255, 0.9);
+  color: #0a1e3b; 
   padding: 1rem;
   border-radius: 15px;
   box-shadow: 0 8px 15px rgba(0,0,0,0.15);
@@ -258,7 +245,6 @@ h1 {
   width: 150px;
 }
 
-/* Scoreboard */
 .score-board {
   color: #f0f0f0;
   display: flex;
@@ -270,10 +256,9 @@ h1 {
 .score p:first-child {
   font-size: 3rem;
   font-weight: bold;
-  color: #f39c12; /* golden color for scores */
+  color: #f39c12;
 }
 
-/* Message */
 #msg {
   background-color: rgba(10, 30, 59, 0.9);
   color: #f0f0f0;
@@ -285,5 +270,3 @@ h1 {
   margin-top: 2rem;
   text-align: center;
 }
-
-/* Responsive adjustments remain the same */
